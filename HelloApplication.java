@@ -30,8 +30,9 @@ import java.util.Random;
 
 
 // SINGLETON DESIGN PATTERN USED, TO ENSURE ONLY ONE PLAYER OBJECT IS PRESENT THROUGHOUT THE GAME.
-// Added swords for bonus -> if player touches sword, he gets killed.
-
+// STATE DESIGN PATTERN IS USED TO IMPLEMENT SCENE CHANGES BETWEEN FIRST, SECOND AND THIRD SCENES i.e. HOME PAGE, GAME PAGE
+// AND GAME OVER PAGE.
+// added swords for bonus -> if player touches sword, he gets killed.
 public class HelloApplication extends Application {
     private static boolean up_down_flag = false;
     private Stage primaryStage;
@@ -44,7 +45,6 @@ public class HelloApplication extends Application {
     private static int highScore;
     boolean playermovenow=false;
     static Stage stage;
-
 
     @Override
     public void start(Stage primaryStage) {
@@ -214,7 +214,7 @@ public class HelloApplication extends Application {
         secondPlatform.setFill(Color.BLACK);
         root.getChildren().addAll(firstPlatform,secondPlatform);
 
-        double stickX = firstPlatform.getX() + firstPlatform.getWidth() - 2;
+        double stickX = firstPlatform.getX() + firstPlatform.getWidth() - 2; // Assuming the stick has a fixed width of 20
         StickBridge stickBridge = new StickBridge(0);
         Rectangle stickRectangle = stickBridge.getStick();
         stickRectangle.setX(stickX);
@@ -743,10 +743,14 @@ public class HelloApplication extends Application {
 
             } else {
                 // Correct collection - Player avoided the sword
+
                 //System.out.println("Player successfully avoided the sword!");
             }
         }
     }
+
+
+
 
     public static void main(String[] args) {
         launch();
